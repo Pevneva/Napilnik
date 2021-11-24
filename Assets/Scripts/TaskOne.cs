@@ -92,34 +92,13 @@ public class TaskOne : MonoBehaviour
     private void Start()
     {
         InitData(100, 150, 10);
-        TryShoot(_petya, _bot1);
-
-        // достаточно пуль - игрок жив после выстрелов
-        // недостаточно пуль - игрок жив после выстрелав
-        // достаточно пуль - игрок умер после выстрелов
-        // недостаточно пуль - игрок умер после выстрелав
+        _bot1.OnSeePlayer(_petya);
     }
 
     private void InitData(int playerHealth, int weaponDamage, int bullets)
     {
         _petya = new Player(playerHealth);
-        // _pistol = new Weapon(weaponDamage, bullets);
+        _pistol = new Weapon(weaponDamage, bullets);
         _bot1 = new Bot(_pistol);        
-    }
-
-    private void TryShoot(Player player, Bot bot)
-    {
-        // Debug.Log(" ========================================================================== ");
-        // Debug.Log("Petya's health : " + player.Health);
-        // Debug.Log("Damage of bot's weapon : " + bot.Weapon.Damage);
-        // Debug.Log("Amount of bullets of bot's weapon : " + bot.Weapon.Bullets);
-        
-        bot.OnSeePlayer(player);
-
-        Debug.Log(" Do shoot : ");
-        // Debug.Log("Petya's health after shooting : " + player.Health);
-        Debug.Log("IsBulletsEnough after shooting : " + bot.Weapon.IsBulletsEnough());    
-        Debug.Log(" ========================================================================== ");
-
     }
 }
