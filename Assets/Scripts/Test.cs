@@ -9,5 +9,6 @@ public class Test : MonoBehaviour
     {
         Debug.Log("Just test class");
         Debug.Log("Some changes on test2 branch");
+        Debug.Log("Some changes on test3 branch");
     }
 }
