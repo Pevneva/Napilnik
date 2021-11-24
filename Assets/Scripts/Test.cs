@@ -8,5 +8,6 @@ public class Test : MonoBehaviour
     void Start()
     {
         Debug.Log("Just test class");
+        Debug.Log("Some changes on test2 branch");
     }
 }
