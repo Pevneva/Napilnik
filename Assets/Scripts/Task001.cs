@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskOne : MonoBehaviour
+public class Task001 : MonoBehaviour
 {
     private class Weapon
     {
@@ -12,7 +12,7 @@ public class TaskOne : MonoBehaviour
         
         public Weapon(int damage, int bullets)
         {
-            if (damage <= 0)
+            if (damage < 0)
                 throw new ArgumentOutOfRangeException(nameof(damage));
 
             if (bullets < 0)
@@ -68,37 +68,19 @@ public class TaskOne : MonoBehaviour
 
     private class Bot
     {
-        public Weapon Weapon { get; }
+        private Weapon _weapon;
         public Bot(Weapon weapon)
         {
             if (weapon == null)
                 throw new ArgumentOutOfRangeException(nameof(weapon));
             
-            Weapon = weapon;
+            _weapon = weapon;
         }
 
         public void OnSeePlayer(Player player)
         {
-            if (Weapon.IsBulletsEnough() && player.IsAlive())
-                Weapon.Shoot(player);
+            if (_weapon.IsBulletsEnough() && player.IsAlive())
+                _weapon.Shoot(player);
         }
-    }
-
-    // -- TEST -- //
-    
-    private Player _petya;
-    private Weapon _pistol;
-    private Bot _bot1;
-    private void Start()
-    {
-        InitData(100, 150, 10);
-        _bot1.OnSeePlayer(_petya);
-    }
-
-    private void InitData(int playerHealth, int weaponDamage, int bullets)
-    {
-        _petya = new Player(playerHealth);
-        _pistol = new Weapon(weaponDamage, bullets);
-        _bot1 = new Bot(_pistol);        
     }
 }
